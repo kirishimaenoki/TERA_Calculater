@@ -20,7 +20,7 @@ function calculate(){
 
     // 戦いの鬨
     if ( option_data[2].selected ) {
-        penetration_data = parseInt(ignore_data) + parseInt(1335);
+        penetration_data = parseInt(penetration_data) + parseInt(1335);
     }
 
     // マナソング

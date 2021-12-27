@@ -6,6 +6,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Materialize icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
     <div class="row">
@@ -20,20 +22,20 @@
       <div class="row">
         <form class="col s4">
           <div class="input-field col s12">
-            <input placeholder="90000" id="enemy_regist" type="number" class="validate" value="0" onchange="calculate()">
+            <input placeholder="90000" id="enemy_regist" type="number" class="validate" value="0" onchange="Calculate()">
             <label for="enemy_regist">敵属性抵抗</label>
           </div>
         </form>
 
         <form class="col s4">
           <div class="input-field col s12">
-            <input placeholder="90000" id="tank_regist" type="number" class="validate" value="0" onchange="calculate()">
+            <input placeholder="90000" id="tank_regist" type="number" class="validate" value="0" onchange="Calculate()">
             <label for="tank_Regist">タンク属性抵抗</label>
           </div>
         </form>
         <form class="col s4">
           <div class="input-field col s12">
-            <input placeholder="90000" id="healer_regist" type="number" class="validate" value="0" onchange="calculate()">
+            <input placeholder="90000" id="healer_regist" type="number" class="validate" value="0" onchange="Calculate()">
             <label for="healer_Regist">ヒーラー属性抵抗</label>
           </div>
         </form>
@@ -41,15 +43,48 @@
 
       <div class="row">
         <form class="col s6">
-          <div class="input-field col s12">
-            <input placeholder="10000" id="penetration" type="number" class="validate" value="0" onchange="calculate()">
+          <div class="input-field col s8">
+            <input placeholder="10000" id="penetration" type="number" class="validate" value="0" onchange="Calculate()">
             <label for="penetration">属性貫通</label>
           </div>
+          <div class="input-field col s3">
+            <input placeholder="500" id="add_penetration_form" type="number" class="validate" value="0" onchange="Calculate()">
+            <label for="add_penetration">貫通変化量</label>
+          </div>
+          <div class="col s1">
+            <div class="row">
+              <button class="btn-small waves-effect" type="button" id="add_penetration_button" name="action" onclick="OnButtunClick(this)">
+                <i class="tiny material-icons">add</i>
+              </button>
+            </div>
+            <div class="row">
+              <button class="btn-small waves-effect" type="button" id="remove_penetration_button" name="action" onclick="OnButtunClick(this)">
+                <i class="tiny material-icons">remove</i>
+              </button>
+            </div>
+          </div>
         </form>
+
         <form class="col s6">
-          <div class="input-field col s12">
-            <input placeholder="10000" id="ignore" type="number" class="validate" value="0" onchange="calculate()">
+          <div class="input-field col s8">
+            <input placeholder="10000" id="ignore" type="number" class="validate" value="0" onchange="Calculate()">
             <label for="ignore">属性無視</label>
+          </div>
+          <div class="input-field col s3">
+            <input placeholder="1000" id="add_ignore_form" type="number" class="validate" value="0" onchange="Calculate()">
+            <label for="add_ignore">無視変化量</label>
+          </div>          
+          <div class="col s1">
+            <div class="row">
+              <button class="btn-small waves-effect" type="button" id="add_ignore_button" name="action" onclick="OnButtunClick(this)">
+                <i class="tiny material-icons">add</i>
+              </button>
+            </div>
+            <div class="row">
+              <button class="btn-small waves-effect" type="button" id="remove_ignore_button" name="action" onclick="OnButtunClick(this)">
+                <i class="tiny material-icons">remove</i>
+              </button>
+            </div>
           </div>
         </form>
       </div>
@@ -69,16 +104,27 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input disabled id="result" type="number" class="materialize-textarea" value="0" onchange="calculate()"></textarea>
-          <label for="result">計算結果</label>
+          <input disabled id="result" type="number" class="materialize-textarea" value="0"></textarea>
+          <label for="result">計算結果 (-33333を目指すところ)</label>
+        </div>
+      </div>     
+
+      <div class="row">
+        <div class="input-field col s4">
+          <input disabled id="add_penetration_coeff" type="number" class="small materialize-textarea" value="0"></textarea>
+          <label for="result">貫通変化量　敵抵抗減少量</label>
+        </div>
+        <div class="input-field col s4">
+          <input disabled id="remove_penetration_coeff" type="number" class="small materialize-textarea" value="0"></textarea>
+          <label for="result">貫通変化量　敵抵抗上昇量</label>
         </div>
       </div>
-      
+  
     </div>
-
     <!-- Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="code.js"></script>
-    <script type="text/javascript" src="calculate.js"></script>
+    <script type="text/javascript" src="Code.js"></script>
+    <script type="text/javascript" src="Calculate.js"></script>
+    <script type="text/javascript" src="OnButtonEvent.js"></script>
 </body>

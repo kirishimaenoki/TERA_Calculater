@@ -1,9 +1,12 @@
-function Calculate(){
-    
+/**
+ * 抵抗値を計算する。
+ */
+function Calculate()
+{    
     // Form読み込み    
-    var enemy_regist_data =document.getElementById("enemy_regist").value;
-    var tank_regist_data =document.getElementById("tank_regist").value;
-    var healer_regist_data =document.getElementById("healer_regist").value;
+    var enemy_regist_data = document.getElementById("enemy_regist").value;
+    var tank_regist_data = document.getElementById("tank_regist").value;
+    var healer_regist_data = document.getElementById("healer_regist").value;
     var penetration_data = document.getElementById("penetration").value;
     var ignore_data = document.getElementById("ignore").value;
     var option_data = document.getElementById("buff_options").options;
@@ -35,24 +38,32 @@ function Calculate(){
     }
     
     // 計算
+    var result_data = CalculateRegist(enemy_regist_data, penetration_data, ignore_data, tank_regist_data, healer_regist_data);
+    document.getElementById("result").value = result_data;
+
+    // 貫通上昇量計算
+    var penetration_coeff = parseInt(penetration_data) + parseInt(add_penetration_data);
+    var coeff_result = CalculateRegist(enemy_regist_data, penetration_coeff, ignore_data, tank_regist_data, healer_regist_data);  
+    document.getElementById("add_penetration_coeff").value = parseInt(coeff_result) - parseInt(result_data) ;
+
+    // 貫通減少量計算
+    penetration_coeff = parseInt(penetration_data) - parseInt(add_penetration_data);    
+    coeff_result = CalculateRegist(enemy_regist_data, penetration_coeff, ignore_data, tank_regist_data, healer_regist_data);  
+    document.getElementById("remove_penetration_coeff").value = parseInt(coeff_result) - parseInt(result_data);
+    
+}
+
+/**
+ * 計算モジュールコア
+ * @param 全て変数だよ
+ * @return 抵抗値計算結果
+ */
+function CalculateRegist(enemy_regist_data, penetration_data, ignore_data, tank_regist_data, healer_regist_data)
+{
     var penetration_value = enemy_regist_data * ( penetration_data / ( parseInt(penetration_data) + parseInt(10000) ) );
     var ignore_value = ignore_data;
     var buff_value = (parseInt(tank_regist_data) * 0.1) + (parseInt(healer_regist_data) * 0.1);
 
     var result_data = parseInt(enemy_regist_data) - parseInt(penetration_value) - parseInt(ignore_value) - parseInt(buff_value);
-    
-    document.getElementById("result").value = result_data;
-
-    // 貫通上昇量計算
-    var penetration_coeff = parseInt(penetration_data) + parseInt(add_penetration_data);
-    var penetration_value = enemy_regist_data * ( penetration_coeff / ( parseInt(penetration_coeff) + parseInt(10000) ) );
-    var coeff_result = parseInt(enemy_regist_data) - parseInt(penetration_value) - parseInt(ignore_value) - parseInt(buff_value)
-    document.getElementById("add_penetration_coeff").value = parseInt(coeff_result) - parseInt(result_data) ;
-
-    // 貫通減少量計算
-    var penetration_coeff = parseInt(penetration_data) - parseInt(add_penetration_data);    
-    var penetration_value = enemy_regist_data * ( penetration_coeff / ( parseInt(penetration_coeff) + parseInt(10000) ) );
-    var coeff_result = parseInt(enemy_regist_data) - parseInt(penetration_value) - parseInt(ignore_value) - parseInt(buff_value)
-    document.getElementById("remove_penetration_coeff").value = parseInt(coeff_result) - parseInt(result_data);
-    
+    return result_data;
 }

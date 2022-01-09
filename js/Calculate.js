@@ -14,7 +14,7 @@ function Calculate()
 
     // 強力な呪い
     if ( option_data[0].selected ) {
-        ignore_data = parseInt(ignore_data) + parseInt(9800);
+        ignore_data = parseInt(ignore_data) + parseInt(9400);
     }
 
     // 死刑宣告

@@ -3,6 +3,9 @@
 ## 概要
 TERAで使用される属性抵抗の計算ツールです。
 
+ページはこちら：
+https://kirishimaenoki.github.io/TERA_Calculater/
+
 ## 使い方
 入力すると計算結果が表示されます。
 
